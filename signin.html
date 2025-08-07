@@ -1,24 +1,20 @@
-<form id="loginForm">
-  <input type="text" id="loginUsername" placeholder="Username" required>
-  <input type="password" id="loginPassword" placeholder="Password" required>
-  <button type="submit">Log In</button>
-</form>
-
 <script>
-  document.getElementById("loginForm").addEventListener("submit", function (e) {
+document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const loginUsername = document.getElementById("loginUsername").value;
-    const loginPassword = document.getElementById("loginPassword").value;
+    const inputUsername = document.getElementById("loginUsername").value;
+    const inputPassword = document.getElementById("loginPassword").value;
 
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const savedUsername = localStorage.getItem("username");
+    const savedPassword = localStorage.getItem("password");
 
-    if (storedUser && storedUser.username === loginUsername && storedUser.password === loginPassword) {
-      alert("Login successful!");
-      window.location.href = "main.html"; // redirect to main content
+    if (inputUsername === savedUsername && inputPassword === savedPassword) {
+        alert("Login successful!");
+        // Redirect to home or dashboard
+        window.location.href = "home.html"; // (Create this file)
     } else {
-      alert("Invalid username or password!");
+        alert("Invalid credentials. Try again.");
     }
-  });
+});
 </script>
 
