@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Recommendation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Book Recommendation</h1>
+
+    <div id="step1">
+      <label for="name">Enter your name:</label><br>
+      <input type="text" id="name" placeholder="Your Name">
+      <button onclick="goToGenre()">Next</button>
+    </div>
+
+    <div id="step2" class="hidden">
+      <p>Choose a genre:</p>
+      <button onclick="selectGenre('horror')">Horror</button>
+      <button onclick="selectGenre('comedy')">Comedy</button>
+    </div>
+
+    <div id="step3" class="hidden">
+      <p>Choose a language:</p>
+      <button onclick="selectLanguage('english')">English</button>
+      <button onclick="selectLanguage('hindi')">Hindi</button>
+      <button onclick="selectLanguage('spanish')">Spanish</button>
+    </div>
+
+    <div id="result" class="hidden">
+      <h2 id="greeting"></h2>
+      <h3>Recommended Books:</h3>
+      <ul id="bookList"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
