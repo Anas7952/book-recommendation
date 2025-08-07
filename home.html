@@ -75,24 +75,23 @@
       document.getElementById("step3").classList.remove("hidden");
     }
 
-    function selectLanguage(language) {
-      const greeting = document.getElementById("greeting");
-      const bookList = document.getElementById("bookList");
-      greeting.textContent = Hello, ${userName}!;
+   function selectLanguage(language) {
+  const greeting = document.getElementById("greeting");
+  const bookList = document.getElementById("bookList");
+  greeting.textContent = Hello, ${userName}!;
 
-      const books = getBooks(selectedGenre, language);
-      bookList.innerHTML = ""; // Clear previous
+  const books = getBooks(selectedGenre, language);
+  bookList.innerHTML = ""; // Clear previous
 
-      books.forEach((book) => {
-        const li = document.createElement("li");
-        li.textContent = book;
-        bookList.appendChild(li);
-      });
+  books.forEach((book) => {
+    const li = document.createElement("li");
+    li.textContent = book;
+    bookList.appendChild(li);
+  });
 
-      document.getElementById("step3").classList.add("hidden");
-      document.getElementById("result").classList.remove("hidden");
-    }
-
+  document.getElementById("step3").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+}
     function getBooks(genre, language) {
       const bookData = {
         horror: {
@@ -112,4 +111,5 @@
   </script>
 </body>
 </html>
+
 
