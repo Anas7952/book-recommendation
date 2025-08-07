@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book Recommendation</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .hidden {
+      display: none;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>📚 Book Recommendation</h1>
 
     <div id="step1">
-      <label for="name">Enter your name:</label><br>
-      <input type="text" id="name" placeholder="Your Name">
+      <label for="name">Enter your name:</label><br />
+      <input type="text" id="name" placeholder="Your Name" />
       <button onclick="goToGenre()">Next</button>
     </div>
 
@@ -35,6 +54,62 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    let userName = "";
+    let selectedGenre = "";
+
+    function goToGenre() {
+      const nameInput = document.getElementById("name").value.trim();
+      if (nameInput === "") {
+        alert("Please enter your name.");
+        return;
+      }
+      userName = nameInput;
+      document.getElementById("step1").classList.add("hidden");
+      document.getElementById("step2").classList.remove("hidden");
+    }
+
+    function selectGenre(genre) {
+      selectedGenre = genre;
+      document.getElementById("step2").classList.add("hidden");
+      document.getElementById("step3").classList.remove("hidden");
+    }
+
+    function selectLanguage(language) {
+      const greeting = document.getElementById("greeting");
+      const bookList = document.getElementById("bookList");
+      greeting.textContent = Hello, ${userName}!;
+
+      const books = getBooks(selectedGenre, language);
+      bookList.innerHTML = ""; // Clear previous
+
+      books.forEach((book) => {
+        const li = document.createElement("li");
+        li.textContent = book;
+        bookList.appendChild(li);
+      });
+
+      document.getElementById("step3").classList.add("hidden");
+      document.getElementById("result").classList.remove("hidden");
+    }
+
+    function getBooks(genre, language) {
+      const bookData = {
+        horror: {
+          english: ["Dracula", "Frankenstein", "The Shining"],
+          hindi: ["Bhoot Bungla", "Chudail Ki Kahani"],
+          spanish: ["La Casa de los Espíritus", "El Resplandor"],
+        },
+        comedy: {
+          english: ["Diary of a Wimpy Kid", "Catch-22", "Good Omens"],
+          hindi: ["Chacha Chaudhary", "Tenali Raman"],
+          spanish: ["Don Quijote", "El Libro Troll"],
+        },
+      };
+
+      return bookData[genre]?.[language] || ["No books found"];
+    }
+  </script>
 </body>
 </html>
+
